@@ -15,19 +15,24 @@ class App extends Component {
 
   deletePersonHandler = personIndex => {
     const persons = [...this.state.persons];
-    console.log("---sdfdf");
+
     persons.splice(personIndex, 1);
     this.setState({ persons });
   };
 
-  nameChangedHandler = event => {
-    this.setState({
-      persons: [
-        { name: "Max", age: 28 },
-        { name: event.target.value, age: 29 },
-        { name: "Stephanie", age: 26 }
-      ]
-    });
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(
+      person => person.id === id
+    );
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons });
   };
 
   toggerPersonsHandler = () => {
@@ -50,10 +55,11 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => (
             <Person
-              key={index}
+              key={person.id}
               click={() => this.deletePersonHandler(index)}
               name={person.name}
               age={person.age}
+              changed={event => this.nameChangedHandler(event, person.id)}
             />
           ))}
         </div>
