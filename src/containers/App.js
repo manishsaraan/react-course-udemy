@@ -4,6 +4,18 @@ import Persons from "../components/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[appo] constructor");
+  }
+  static getDerivedStateFromProps(props, state) {
+    console.log("[app.js]getDerivedStateFromProps");
+    return state;
+  }
+
+  componentDidMount() {
+    console.log("[app.js] componetDidMount");
+  }
   state = {
     persons: [
       { id: "sdfdf", name: "Max", age: 28 },
@@ -42,6 +54,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[app.js] ernder");
     const { showPersons } = this.state;
 
     let persons = null;
@@ -60,6 +73,7 @@ class App extends Component {
     return (
       <div className={styles.App}>
         <Cockpit
+          title={this.props.appTitle}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.toggerPersonsHandler}
