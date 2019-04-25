@@ -17,12 +17,11 @@ class App extends Component {
     console.log("[app.js] componetDidMount");
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     console.log("[app.js] componentDidUpdate");
-
   }
 
-  shouldComponentUpdate(nextProps, nextState){
+  shouldComponentUpdate(nextProps, nextState) {
     console.log("[app.js] shouldComponentUpdate");
     return true;
   }

@@ -22,6 +22,10 @@ class Persons extends Component {
     console.log("[Persons]componentDidUpdate", snapshot);
   }
 
+  componentWillUnmount() {
+    console.log("[Persons]componentWillUnmount");
+  }
+
   render() {
     return this.props.persons.map((person, index) => (
       <ErrorBoundry key={person.id}>
