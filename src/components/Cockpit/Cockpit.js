@@ -4,6 +4,7 @@ import styles from "./Cockpit.css";
 const Cockpit = props => {
   useEffect(() => {
     console.log("Cockepit useEffect");
+    const timer = setTimeout(() => alert("Saved data to cloud"));
     // do cleanup work here
     return () => {
       console.log("[Cockepit]cleanup work");
