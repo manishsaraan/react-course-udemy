@@ -8,6 +8,18 @@ class App extends Component {
     super(props);
     console.log("[appo] constructor");
   }
+
+  state = {
+    persons: [
+      { id: "sdfdf", name: "Max", age: 28 },
+      { id: "sd1fdf", name: "Manu", age: 29 },
+      { id: "sdf2df", name: "Stephanie", age: 26 }
+    ],
+    otherState: "some other value",
+    showPersons: false,
+    toggleCockpit: false
+  };
+
   static getDerivedStateFromProps(props, state) {
     console.log("[app.js]getDerivedStateFromProps");
     return state;
@@ -25,16 +37,6 @@ class App extends Component {
     console.log("[app.js] shouldComponentUpdate");
     return true;
   }
-
-  state = {
-    persons: [
-      { id: "sdfdf", name: "Max", age: 28 },
-      { id: "sd1fdf", name: "Manu", age: 29 },
-      { id: "sdf2df", name: "Stephanie", age: 26 }
-    ],
-    otherState: "some other value",
-    showPersons: false
-  };
 
   deletePersonHandler = personIndex => {
     const persons = [...this.state.persons];
@@ -65,7 +67,7 @@ class App extends Component {
 
   render() {
     console.log("[app.js] ernder");
-    const { showPersons } = this.state;
+    const { showPersons, toggleCockpit } = this.state;
 
     let persons = null;
     if (showPersons) {
@@ -82,12 +84,19 @@ class App extends Component {
 
     return (
       <div className={styles.App}>
-        <Cockpit
-          title={this.props.appTitle}
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          clicked={this.toggerPersonsHandler}
-        />
+        <button
+          onClick={() => this.setState({ toggleCockpit: !toggleCockpit })}
+        >
+          Toggle Cockpit
+        </button>
+        {!toggleCockpit && (
+          <Cockpit
+            title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            clicked={this.toggerPersonsHandler}
+          />
+        )}
         {persons}
       </div>
     );

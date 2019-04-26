@@ -10,7 +10,12 @@ class Persons extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log("[Persons]shouldComponentUpdate");
-    return true;
+    // write performance optimization code here
+    if (nextProps.persons !== this.props.persons) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -27,6 +32,7 @@ class Persons extends Component {
   }
 
   render() {
+    console.log("[Persons]rendering..");
     return this.props.persons.map((person, index) => (
       <ErrorBoundry key={person.id}>
         <Person

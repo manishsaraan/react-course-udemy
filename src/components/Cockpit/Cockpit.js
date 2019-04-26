@@ -7,6 +7,7 @@ const Cockpit = props => {
     const timer = setTimeout(() => alert("Saved data to cloud"));
     // do cleanup work here
     return () => {
+      clearTimeout(timer);
       console.log("[Cockepit]cleanup work");
     };
   }, []);
