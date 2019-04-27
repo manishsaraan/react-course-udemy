@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import styles from "./Cockpit.css";
 
 const Cockpit = props => {
@@ -26,11 +26,11 @@ const Cockpit = props => {
     btnClass = classes.Red;
   }
 
-  if (props.persons.length <= 2) {
+  if (props.personsLength <= 2) {
     classes.push(styles.red);
   }
 
-  if (props.persons.length <= 1) {
+  if (props.personsLength <= 1) {
     classes.push(styles.bold);
   }
   return (
@@ -44,4 +44,4 @@ const Cockpit = props => {
   );
 };
 
-export default Cockpit;
+export default memo(Cockpit);
