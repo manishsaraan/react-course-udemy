@@ -1,22 +1,22 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Person from "./Persons/Person/Person";
 import ErrorBoundry from "../ErrorBoundry/ErrorBoundry";
 
-class Persons extends Component {
+class Persons extends PureComponent {
   // static getDerivedStateFromProps(props, state) {
   //   console.log("[Persons]getDerivedStateFromProps");
   //   return state;
   // }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("[Persons]shouldComponentUpdate");
-    // write performance optimization code here
-    if (nextProps.persons !== this.props.persons) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("[Persons]shouldComponentUpdate");
+  //   // write performance optimization code here
+  //   if (nextProps.persons !== this.props.persons) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log("[Persons]getSnapshotBeforeUpdate");
