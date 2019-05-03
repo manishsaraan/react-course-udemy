@@ -1,10 +1,14 @@
-import React, { useEffect, memo } from "react";
+import React, { useEffect, memo, useRef } from "react";
 import styles from "./Cockpit.css";
 
 const Cockpit = props => {
+  const toggleBtnRef = useRef(null);
+
   useEffect(() => {
     console.log("Cockepit useEffect");
-    const timer = setTimeout(() => alert("Saved data to cloud"));
+    const timer = setTimeout(() => console.log("Saved data to cloud"));
+    // componentDidMount
+    toggleBtnRef.current.click();
     // do cleanup work here
     return () => {
       clearTimeout(timer);
@@ -37,7 +41,7 @@ const Cockpit = props => {
     <div className={styles.Cockpit}>
       <h1>{props.title}</h1>
       <p className={classes.join(" ")}>This is really working!</p>
-      <button className={btnClass} onClick={props.clicked}>
+      <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>
         Switch Name
       </button>
     </div>
