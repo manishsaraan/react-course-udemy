@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Aux from "../../../hoc/Aux";
 import Backdrop from "../Backdrop/Backdrop";
 import classes from "./Modal.css";
@@ -18,4 +18,4 @@ const modal = props => (
   </Aux>
 );
 
-export default modal;
+export default memo(modal);
