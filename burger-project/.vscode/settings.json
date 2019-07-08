@@ -1,0 +1,21 @@
+{
+  "window.zoomLevel": 0,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "Dark-Dracula",
+  "editor.formatOnSave": true,
+  "editor.fontFamily": "'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace",
+  "telemetry.enableTelemetry": false,
+  "javascript.format.enable": false,
+  "prettier.eslintIntegration": true,
+  "workbench.editor.enablePreview": false,
+  "editor.fontSize": 16,
+  "editor.wordWrap": "on",
+  "terminal.integrated.fontSize": 18,
+  "sync.gist": "dce16a81ad713b4ad898f63d7a09fbbd",
+  "sync.quietSync": false,
+  "sync.removeExtensions": true,
+  "sync.syncExtensions": true,
+  "sync.autoDownload": false,
+  "sync.autoUpload": false,
+  "sync.forceDownload": false
+}
