@@ -15,9 +15,6 @@ class NewPost extends Component {
       body: this.state.content,
       author: this.state.author
     };
-
-    debugger;
-
     axios
       .post("https://jsonplaceholder.typeicode.com/posts", post)
       .then(response => {
