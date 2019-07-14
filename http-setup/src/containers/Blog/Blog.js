@@ -13,7 +13,7 @@ class Blog extends Component {
   };
 
   componentDidMount() {
-    const posts = axios("https://jsonplaceholder.typicode.com/posts")
+    axios("/posts")
       .then(response => {
         const posts = response.data.slice(0, 4);
         const updatedPosts = posts.map(post => ({ ...post, author: "max" }));
