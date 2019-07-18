@@ -13,6 +13,7 @@ const INGREDIENT_PRICE = {
   meat: 1.3,
   bacon: 0.7
 };
+
 class BurgerBuild extends Component {
   state = {
     ingredients: {
@@ -109,7 +110,7 @@ class BurgerBuild extends Component {
       })
       .catch(error => {
         console.log(error);
-        this.setState({ loading: false });
+        this.setState({ loading: false, purchasing: false });
       });
   };
 
@@ -139,8 +140,9 @@ class BurgerBuild extends Component {
         <Modal
           show={this.state.purchasing}
           modalClosed={this.purchaseCancelHandler}
-        />
-        {orderSummary}
+        >
+          {orderSummary}
+        </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           ingredientRemoved={this.removeIngredientHandler}
