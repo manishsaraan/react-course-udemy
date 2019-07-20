@@ -4,10 +4,14 @@ import Aux from "../Aux/Aux";
 
 const withErrorHandler = (WrappedComponent, axios) => {
   return class extends Component {
-    state = {
-      error: null
-    };
-    componentDidMount() {
+    constructor() {
+      super();
+
+      this.state = {
+        error: null
+      };
+
+      // set up the interceptors
       axios.interceptors.request.use(req => {
         this.setState({ error: null });
         return req;
