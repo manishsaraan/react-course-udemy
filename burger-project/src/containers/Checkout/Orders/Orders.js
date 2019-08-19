@@ -1,7 +1,7 @@
 import React from 'react';
 import Order from '../../../components/UI/Order/Order';
 import axios from '../../../axios-order';
-import  withErrorHandler from '../../../hoc/withErrorHandler';
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
 
 class Orders extends React.Component {
   state = {
@@ -25,8 +25,9 @@ class Orders extends React.Component {
   render(){
       return(
           <div>
-              <Order/>
-              <Order/>
+             {
+                 this.state.ordres.map( order => <Order ingredients={order.ingredients} price={+order.price} key={order.id} />)
+             }
           </div>
       );
   }
