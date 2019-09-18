@@ -87,7 +87,7 @@ class ContactData extends React.Component {
   render() {
     const formElementsArr = [];
     for(let key in this.state.orderForm){
-      formElementsArr.push({id:key, config: this.state.order[key]});
+      formElementsArr.push({id:key, config: this.state.orderForm[key]});
     }
 
     let form = (      
@@ -95,7 +95,7 @@ class ContactData extends React.Component {
       {
         formElementsArr.map( element => (
          <Input
-          key={element.key}
+          key={element.id}
           elementType={element.config.elementType}
           elementConfig={element.config.elementConfig}
           value={element.config.value}
@@ -103,7 +103,7 @@ class ContactData extends React.Component {
         ))
       }
         
-      <Button btnType="Success">Order</Button>
+      <Button btnType="Success">Ordedfdgr</Button>
       </form>
     );
     if (this.state.loading) {
