@@ -9,7 +9,7 @@ class Checkout extends Component {
     totalPrice: 0
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const query = new URLSearchParams(this.props.location.search);
     const ingredients = {};
     let price = 0;
@@ -17,7 +17,8 @@ class Checkout extends Component {
       //['salad', 1]
 
       if (param[0] === "price") {
-        price = price[1];
+        price = param[1];
+
       } else {
         ingredients[param[0]] = +param[1];
       }
