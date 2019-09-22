@@ -15,7 +15,11 @@ class ContactData extends React.Component {
           type: "text",
           placeholder: "Your Name"
         },
-        value: ""
+        value: "",
+        validation:{
+          required: true
+        },
+        valid: false
       },
       street: {
         elementType: "input",
@@ -23,7 +27,11 @@ class ContactData extends React.Component {
           type: "text",
           placeholder: "Street Name"
         },
-        value: ""
+        value: "",
+        validation:{
+          required: true
+        },
+        valid: false
       },
       zipCode: {
         elementType: "input",
@@ -31,7 +39,13 @@ class ContactData extends React.Component {
           type: "text",
           placeholder: "Zip Code"
         },
-        value: ""
+        value: "",
+        validation:{
+          required: true,
+          minLength: 5,
+          maxLength: 5
+        },
+        valid: false
       },
       country:{
         elementType: "input",
@@ -39,7 +53,11 @@ class ContactData extends React.Component {
           type: "text",
           placeholder: "Country"
         },
-        value: ""
+        value: "",
+        validation:{
+          required: true
+        },
+        valid: false
       },
       email: {
         elementType: "input",
@@ -47,7 +65,11 @@ class ContactData extends React.Component {
           type: "email",
           placeholder: "Your Email"
         },
-        value: ""
+        value: "",
+        validation:{
+          required: true
+        },
+        valid: false
       },
       deliveryMethod: {
         elementType: "select",
@@ -100,9 +122,27 @@ class ContactData extends React.Component {
     }
 
     updatedFormElement.value = event.target.value;
+    updatedFormElement.valid = this.checkValidation(event.target.value, updatedFormElement.validation);
     updatedOrderForm[inputIdentifier] = updatedFormElement;
 
     this.setState({orderForm: updatedOrderForm});
+  }
+
+  checkValidation = (value, rules) => {
+     let isValid = true;
+     if(rules.required){
+       isValid = value.trim() !== "" && isValid;
+     }
+
+     if(rules.minLength){
+       isValid  = value.lenth >= rules.minLength && isValid;;
+     }
+
+     if(rules.maxLength){
+      isValid  = value.lenth <= rules.maxLength && isValid;
+    }
+
+     return isValid;
   }
 
   render() {
