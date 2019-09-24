@@ -87,7 +87,8 @@ class ContactData extends React.Component {
         value: ""
       }
     },
-    loading: false
+    loading: false,
+    formIsValid: false
   };
 
   orderHandler = event => {
@@ -131,21 +132,34 @@ class ContactData extends React.Component {
     updatedFormElement.valid = this.checkValidation(event.target.value, updatedFormElement.validation);
     updatedOrderForm[inputIdentifier] = updatedFormElement;
 
-    this.setState({orderForm: updatedOrderForm});
+    let formIsValid = true;
+    
+    for(let inputIdentifier in updatedOrderForm){
+      if(updatedOrderForm[inputIdentifier].rules){
+      console.log(inputIdentifier,updatedOrderForm[inputIdentifier].valid)
+      formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+      }
+    }
+
+    this.setState({orderForm: updatedOrderForm, formIsValid });
   }
 
   checkValidation = (value, rules) => {
      let isValid = true;
+     if(!rules){
+       return;
+     }
+
      if(rules.required){
        isValid = value.trim() !== "" && isValid;
      }
 
      if(rules.minLength){
-       isValid  = value.lenth >= rules.minLength && isValid;;
+       isValid  = value.length >= rules.minLength && isValid;;
      }
 
      if(rules.maxLength){
-      isValid  = value.lenth <= rules.maxLength && isValid;
+      isValid  = value.length <= rules.maxLength && isValid;
     }
 
      return isValid;
@@ -174,7 +188,7 @@ class ContactData extends React.Component {
         ))
       }
         
-      <Button btnType="Success">ORDER</Button>
+      <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
       </form>
     );
     if (this.state.loading) {
