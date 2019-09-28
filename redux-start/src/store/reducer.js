@@ -4,7 +4,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    console.log(action)
+
     switch (action.type) {
         case 'INCREMENT':
             return {
@@ -34,6 +34,15 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 results: [...state.results, { id: new Date(), value: state.counter }]
+            }
+            break;
+        case 'DELETE_RESULT':
+            const { results } = state;
+            const updatedResults = results.filter(item => item.id !== action.id);
+
+            return {
+                ...state,
+                results: updatedResults
             }
             break;
         default:
