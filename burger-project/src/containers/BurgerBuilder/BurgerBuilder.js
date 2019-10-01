@@ -13,7 +13,6 @@ import axios from "../../axios-order";
 class BurgerBuild extends Component {
   state = {
     totalPrice: 4,
-    purchaseable: false,
     purchasing: false,
     loading: false,
     error: false
@@ -30,15 +29,14 @@ class BurgerBuild extends Component {
     //     this.setState({ error: true });
     //   });
   }
-  updatePurchaseState = () => {
-    const ingredients = { ...this.state.ingredients };
+  updatePurchaseState = (ingredients) => {
     const sum = Object.keys(ingredients)
       .map(key => {
         return ingredients[key];
       })
       .reduce((sum, el) => sum + el, 0);
 
-    this.setState({ purchaseable: sum > 0 });
+    return sum > 0;
   };
 
   purchaseHandler = () => {
@@ -94,7 +92,7 @@ class BurgerBuild extends Component {
             ingredientRemoved={this.props.onIngredientRemoved}
             ingredientAdded={this.props.onIngredientAdded}
             disabled={disabledInfo}
-            purchaseable={this.state.purchaseable}
+            purchaseable={this.updatePurchaseState(this.props.ings)}
             ordered={this.purchaseHandler}
             price={this.props.totalPrice}
           />
