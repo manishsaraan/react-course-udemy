@@ -1,26 +1,23 @@
-import * as actionTypes from '../actions/actions'
+import * as actionTypes from '../actions/actionTypes';
+import { updateObject } from '../utility';
 
 const initialState = {
     results: []
 }
 
+const deleteResult = (state, action) => {
+    const { results } = state;
+    const updatedResults = results.filter(item => item.id !== action.id);
+
+    return updateObject(state, {results: updatedResults});
+}
+
 const resultReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.STORE_RESULT:
-            return {
-                ...state,
-                results: [...state.results, { id: new Date(), value: action.result }]
-            }
-            break;
+            return updateObject(state, {results: [...state.results, { id: new Date(), value: action.result }]})
         case actionTypes.DELETE_RESULT:
-            const { results } = state;
-            const updatedResults = results.filter(item => item.id !== action.id);
-
-            return {
-                ...state,
-                results: updatedResults
-            }
-            break;
+            return deleteResult(state, action);
         default:
             return { ...state }
     }
