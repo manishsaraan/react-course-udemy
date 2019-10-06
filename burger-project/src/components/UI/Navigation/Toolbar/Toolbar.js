@@ -6,10 +6,10 @@ import classes from "./Toolbar.css";
 
 const toolbar = props => (
   <header className={classes.Toolbar}>
-    <DrawerToggle clicked={props.drawerToggleClicked} />
+    <DrawerToggle isAuth={props.isAuth} clicked={props.drawerToggleClicked} />
     <Logo height="80%" />
     <nav className={classes.DesktopOnly}>
-      <NavigationItems />
+      <NavigationItems isAuth={props.isAuth} />
     </nav>
   </header>
 );

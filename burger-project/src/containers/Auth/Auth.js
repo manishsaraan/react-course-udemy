@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button'
 import { auth } from '../../store/actions/index'
+import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Auth.css';
 
 class Auth extends Component {
@@ -107,22 +108,34 @@ class Auth extends Component {
                 touched={element.config.touched}
             />
         )
-    })
-      return (
-          <div className={classes.Auth}>
-              <form onSubmit={this.submitHandler}>
-                  {form}
-               <Button btnType="Success">Submit </Button>
-               <Button clicked={this.switchAuthModeHandler } btnType="Danger">Switch to { !this.state.isSignup ? "Signup" : "Login" }</Button>
-                
-              </form>
-          </div>
-      );
+    });
+
+    if(this.props.loading){
+        return <Spinner/>
+    }
+
+    let errorMessage = null;
+    if(this.props.error){
+        errorMessage = <p>{this.props.error.message}</p>
+    }
+
+    return (
+        <div className={classes.Auth}>
+            { errorMessage }
+            <form onSubmit={this.submitHandler}>
+                {form}
+            <Button btnType="Success">Submit </Button>
+            <Button clicked={this.switchAuthModeHandler } btnType="Danger">Switch to { !this.state.isSignup ? "Signup" : "Login" }</Button>
+            
+            </form>
+        </div>
+    );
   }
 }
 
 const mapStateToProps = state => ({
-
+  loading: state.auth.loading,
+  error: state.auth.error
 })
 
 const mapDispatchToProps = dispatch => ({
